@@ -22,10 +22,8 @@ namespace FWareHouse.common.database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            var connectionString = "server=localhost;user=Fox;password=8rSPsJE8XBDKIJ0J;database=warehouse";
+            var connectionString = "server=192.168.31.100;user=Fox;password=8rSPsJE8XBDKIJ0J;database=warehouse";
             var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
-
-            // Replace 'YourDbContext' with the name of your own DbContext derived class.
             optionsBuilder.UseMySql(connectionString, serverVersion).LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors();

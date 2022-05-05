@@ -29,22 +29,32 @@ namespace FWareHouse
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            if (etxtEmail.Text.Trim() == "" || etxtPassword.Password.Trim() == "")
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             using (ApplicationContext context = new ApplicationContext())
             {
-                if(etxtEmail.Text.Trim() == "" || etxtPassword.Password.Trim() == "")
-                {
-                    MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
                 Partner user = null;
-                user = context.partner.Where(item => item.email == etxtEmail.Text && item.password == etxtPassword.Password).FirstOrDefault<Partner>();
-                if (user == null)
+
+                if (MainWindow.isEmployeeSelected)
                 {
-                    MessageBox.Show("Вы ввели неправильный e-mail или пароль. Пожалуйста, проверьте данные и введите их снова.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                } else
+
+                }
+                else
                 {
-                    MessageBox.Show("Вы: " + user.name, "Успех", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    user = context.partner.Where(item => item.email == etxtEmail.Text && item.password == etxtPassword.Password).FirstOrDefault<Partner>();
+                    if (user == null)
+                    {
+                        MessageBox.Show("Вы ввели неправильный e-mail или пароль. Пожалуйста, проверьте данные и введите их снова.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Вы: " + user.name, "Успех", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
             }
         }

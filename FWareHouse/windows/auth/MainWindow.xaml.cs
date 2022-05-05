@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -43,6 +45,36 @@ namespace FWareHouse
         private void Button_Click_Minimize(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        public static bool isEmployeeSelected = false;
+        private void Button_Click_Employee_Mode(object sender, RoutedEventArgs e)
+        {
+            ParterCheckButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            EmployeeCheckButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#64dd17");
+            ParterCheckButton.FontWeight = FontWeights.Regular;
+            EmployeeCheckButton.FontWeight = FontWeights.Medium;
+            ((Button)LoginCard.FindName("RegisterButton")).IsEnabled = false;
+            var registerButton = (Button)RegisterCard.FindName("BackToAuth");
+            if (registerButton.IsEnabled)
+            {
+                // Magic thing, invoking click event in BackToAuth button
+                ButtonAutomationPeer peer = new ButtonAutomationPeer(registerButton);
+                IInvokeProvider invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+                invokeProv.Invoke();
+            }
+            isEmployeeSelected = true;
+        }
+
+
+        private void ParterCheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            ParterCheckButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#64dd17");
+            EmployeeCheckButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            ParterCheckButton.FontWeight = FontWeights.Medium;
+            EmployeeCheckButton.FontWeight = FontWeights.Regular;
+            ((Button)LoginCard.FindName("RegisterButton")).IsEnabled = true;
+            isEmployeeSelected = false;
         }
     }
 }
