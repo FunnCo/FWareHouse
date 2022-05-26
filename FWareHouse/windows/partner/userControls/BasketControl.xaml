@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="FWareHouse.windows.partner.userControls.BasketControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:FWareHouse"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    Padding="16"
+    Background="Transparent"
+    d:DesignHeight="380"
+    d:DesignWidth="640">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="240"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="26" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid IsReadOnly="True" Name="orders" SelectionChanged="orders_SelectionChanged" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+               
+        </DataGrid>
+        <TextBlock           
+            Grid.Column="1"
+            FontWeight="Light"
+            FontSize="10"
+            VerticalAlignment="Bottom"
+            TextAlignment="Right"
+            Margin="0 0 8 8"> 
+            Выберите товар для просмотра деталей          
+        </TextBlock>
+        <StackPanel Grid.Row="1" Margin="0 0 16 0">
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock Name="SelectedName" DockPanel.Dock="Right">
+
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock
+                    Name="SelectedDescription"
+                    DockPanel.Dock="Right">
+
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Количество: 
+                </TextBlock>
+                <TextBlock
+                    Name="SelectedCount"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Транспортная компания: 
+                </TextBlock>
+                <TextBlock
+                    Name="SelectedCompany"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Вес товара: 
+                </TextBlock>
+                <TextBlock
+                    Name="SelectedWeight"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Объем товара: 
+                </TextBlock>
+                <TextBlock
+                    Name="SelectedVolume"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                Margin="0 24 12 0"
+               
+                LastChildFill="False">
+                <Button
+                    Name="deleteSelectedOrder"
+                    Click="deleteSelectedOrder_Click"
+                    BorderThickness="0"
+                    FontSize="12"
+                    Foreground="White"
+                    Background="#64dd17"
+                    DockPanel.Dock="Right">
+                    Удалить                   
+                </Button>
+            </DockPanel>
+        </StackPanel>
+
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0 0 16 0">
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Всего позиций
+                </TextBlock>
+                <TextBlock
+                    Name="totalPositions"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Общий вес заказа
+                </TextBlock>
+                <TextBlock
+                    Name="totalWeight"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                LastChildFill="False">
+                <TextBlock>
+                    Общий объем заказа
+                </TextBlock>
+                <TextBlock
+                    Name="totalVolume"
+                    DockPanel.Dock="Right">
+                    0
+                </TextBlock>
+            </DockPanel>
+            <DockPanel
+                Margin="0 84 12 0"
+                LastChildFill="False">
+                <Button
+                    Name="ConfirmOrders"
+                    Click="ConfirmOrders_Click"
+                    FontSize="12"
+                    Foreground="White"
+                    Background="#64dd17"
+                    BorderThickness="0"
+                    DockPanel.Dock="Right">
+                    Подтвердить
+                </Button>
+                <Button
+                    FontSize="12"
+                    Name="ClearOrders"
+                    Click="ClearOrders_Click"
+                    Style="{DynamicResource MaterialDesignFlatButton}"
+                    Foreground="#64dd17"
+                    DockPanel.Dock="Left">
+                    Очистить
+                </Button>
+            </DockPanel>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>
+
+

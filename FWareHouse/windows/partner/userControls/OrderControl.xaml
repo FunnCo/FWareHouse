@@ -103,12 +103,13 @@
             </DockPanel>
             <DockPanel
                 Margin="0 8 48 0"
-                Name="count"
+                
                 LastChildFill="False">
                 <TextBlock
                     DockPanel.Dock="Left">Количество на складе:</TextBlock>
                 <TextBlock
                     TextAlignment="Right"
+                    Name="count"
                     Text=""
                     DockPanel.Dock="Right">
                 </TextBlock>

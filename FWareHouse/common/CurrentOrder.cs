@@ -1,4 +1,5 @@
 ﻿using FWareHouse.common.entity;
+using FWareHouse.common.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,11 @@ namespace FWareHouse.common
     {
         private static CurrentOrder instance;
 
-        private List<StoredProduct> orderedProducts;
-        public void addProduct(StoredProduct product)
+        private List<OrderedProductModel> orderedProducts;
+        public void addProduct(OrderedProductModel product)
         {
             orderedProducts.Add(product);
+            Console.WriteLine("product added");
         }
 
         public void deleteProduct(int position)
@@ -23,14 +25,14 @@ namespace FWareHouse.common
             orderedProducts.RemoveAt(position);
         }
 
-        public List<StoredProduct> getOrder()
+        public List<OrderedProductModel> getOrder()
         {
             return orderedProducts;
         }
 
         private CurrentOrder()
         {
-            orderedProducts = new List<StoredProduct>();
+            orderedProducts = new List<OrderedProductModel>();
         }
 
         public static CurrentOrder getInstance()

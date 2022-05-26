@@ -15,7 +15,7 @@
     Width="800"
     WindowStyle="None"
     ResizeMode="NoResize">
-    <Grid>
+    <Grid Name="root_grid">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -94,6 +94,7 @@
                         Foreground="#64dd17"
                         Content="Заказать"
                         FontWeight="Medium"
+                        Click="OrderCheckButton_Click"
                         HorizontalAlignment="Left"
                         Width="160"
                         HorizontalContentAlignment="Left"
@@ -101,9 +102,10 @@
                     </Button>
 
                     <Button
-                        Name="SendCheckButton"
+                        Name="BasketCheckButton"
                         Foreground="DarkGray"
                         FontWeight="Regular"
+                        Click="BasketCheckButton_Click"
                         Content="Текущий заказ"
                         HorizontalAlignment="Left"
                         Width="160"
@@ -118,8 +120,6 @@
 
         </materialDesign:Card>
 
-        <local:OrderControl
-            Grid.Row="1" Grid.Column="1"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using FWareHouse.common.database;
+﻿using FWareHouse.common;
+using FWareHouse.common.database;
 using FWareHouse.common.entity;
 using FWareHouse.windows.employee;
 using FWareHouse.windows.partner;
@@ -71,6 +72,7 @@ namespace FWareHouse
                     }
                     else
                     {
+                        Repository.currentId = user.id;
                         var window = new PartnerForm();
                         window.Opacity = 0;
                         window.Show();

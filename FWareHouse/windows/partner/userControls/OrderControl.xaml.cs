@@ -23,7 +23,7 @@ namespace FWareHouse
             InitializeComponent();
             using (ApplicationContext context = new ApplicationContext())
             {
-                var products = context.products_current_info.Select(x => new PartnerTableRow { name = x.name, count = x.stored }).ToList();
+                var products = context.products_current_info.Select(x => new PartnerTableRow { name = x.name, count = x.stored }).Where(x => x.count > 0).ToList();
                 this.products.ItemsSource = products;
 
                 var tranports = context.transport_company.Select(x => new TransportCompany { name = x.name }).ToList();
@@ -59,6 +59,7 @@ namespace FWareHouse
                 this.volume.Text = product.volume.ToString();
                 this.weight.Text = product.weight.ToString();
                 this.description.Text = product.description.ToString();
+                this.count.Text = product.stored.ToString();
             }
         }
 
@@ -71,7 +72,15 @@ namespace FWareHouse
             }
             string selectedItemName = (products.SelectedItem as PartnerTableRow).name;
             ApplicationContext context = new ApplicationContext();
-            CurrentOrder.getInstance().addProduct(context.products_current_info.Where(x => x.name == selectedItemName).First());
+            CurrentOrder.getInstance()
+                .addProduct(
+                    context.products_current_info
+                    .Select(x => new OrderedProductModel { 
+                        name = x.name,
+                        count = Convert.ToInt32(this.ordered_count.Text.ToString()),
+                        company = this.ordered_company.Text.ToString()
+                    })
+                    .Where(x => x.name == selectedItemName).First());
         }
     }
 }
