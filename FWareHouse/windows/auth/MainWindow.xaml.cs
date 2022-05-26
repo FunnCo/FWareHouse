@@ -30,6 +30,7 @@ namespace FWareHouse
         public MainWindow()
         {
             InitializeComponent();
+            new ApplicationContext();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

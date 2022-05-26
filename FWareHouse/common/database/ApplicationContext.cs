@@ -13,6 +13,10 @@ namespace FWareHouse.common.database
     class ApplicationContext: DbContext
     {
         public DbSet<Partner> partner { get; set; }
+        public DbSet<Employee> employee { get; set; }
+        public DbSet<TransportCompany> transport_company { get; set; }
+
+        public DbSet<StoredProduct> products_current_info { get; set; }
 
         public ApplicationContext()
         {
@@ -22,7 +26,7 @@ namespace FWareHouse.common.database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            var connectionString = "server=192.168.31.100;user=Fox;password=8rSPsJE8XBDKIJ0J;database=warehouse";
+            var connectionString = "server=localhost;user=Fox;password=8rSPsJE8XBDKIJ0J;database=warehouse";
             var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
             optionsBuilder.UseMySql(connectionString, serverVersion).LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
