@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FWareHouse.windows.employee.userControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,43 @@ namespace FWareHouse.windows.employee
         public EmployeeForm()
         {
             InitializeComponent();
+            InvoiceCheckButton_Click(null, null);
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Button_Click_Minimize(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        InvoiceControl invoiceControl;
+ 
+
+        private void InvoiceCheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                InvoiceCheckButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#64dd17");
+                InvoiceCheckButton.FontWeight = FontWeights.Medium;
+                this.root_grid.Children.Remove(invoiceControl);
+                invoiceControl = new InvoiceControl();
+                Grid.SetRow(invoiceControl, 1);
+                Grid.SetColumn(invoiceControl, 1);
+                this.root_grid.Children.Add(invoiceControl);
+            }
+            catch (ArgumentException exception) {
+                throw exception;
+            }
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -104,6 +104,7 @@ namespace FWareHouse.windows.partner.userControls
                     query += ");";
                     Console.WriteLine(query);
                     context.executeNonReturningQuery(query);
+                    
                 }
             }
         }

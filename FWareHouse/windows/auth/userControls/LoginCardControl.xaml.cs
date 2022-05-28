@@ -53,7 +53,8 @@ namespace FWareHouse
                     }
                     else
                     {
-                        (new EmployeeForm()).Show();
+                        Repository.currentId = user.id;
+                        (new EmployeeForm()).Show();                        
                         Window.GetWindow(this).Close();
                     }
                 }
